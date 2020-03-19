@@ -1,0 +1,25 @@
+{
+  "name": "react-html-element",
+  "version": "0.0.1",
+  "description": "An extension of HTMLElement that allows for easy creation of Web Components using React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WTW-IM/react-html-element.git"
+  },
+  "keywords": [
+    "React",
+    "HTMLElement",
+    "Web",
+    "Components"
+  ],
+  "author": "Steve Matney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WTW-IM/react-html-element/issues"
+  },
+  "homepage": "https://github.com/WTW-IM/react-html-element#readme"
+}
