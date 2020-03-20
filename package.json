@@ -4,6 +4,7 @@
   "description": "An extension of HTMLElement that allows for easy creation of Web Components using React.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,40 @@
   "bugs": {
     "url": "https://github.com/WTW-IM/react-html-element/issues"
   },
-  "homepage": "https://github.com/WTW-IM/react-html-element#readme"
+  "homepage": "https://github.com/WTW-IM/react-html-element#readme",
+  "lint-staged": {
+    "src/**/*": [
+      "prettier --single-quote --write",
+      "eslint --parser-options \"{project: './tsconfig.json'}\" --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-typescript": "^7.2.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "1.19.1",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "typescript": "^3.8.3"
+  }
 }
