@@ -8,5 +8,9 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'prettier/@typescript-eslint'
-  ]
+  ],
+  rules: {
+    'no-underscore-dangle': 'off',
+    'max-len': ['error', { code: 150 }]
+  }
 };

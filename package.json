@@ -24,16 +24,14 @@
   },
   "homepage": "https://github.com/WTW-IM/react-html-element#readme",
   "lint-staged": {
-    "packages/es-components/src/**/*.js": [
+    "src/**/*": [
       "prettier --single-quote --write",
-      "eslint --fix",
-      "git add"
+      "eslint --parser-options \"{project: './tsconfig.json'}\" --fix"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged"
     }
   },
   "prettier": {
