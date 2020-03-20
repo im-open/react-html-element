@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "npm run build",
-    "build": "npm run lint && tsc",
+    "test": "npm run lint && npm run build",
+    "build": "tsc",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src",
     "prepublishOnly": "npm run build"
   },
