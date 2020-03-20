@@ -1,11 +1,11 @@
 {
   "name": "react-html-element",
   "version": "0.0.1",
-  "description": "An extension of HTMLElement that allows for easy creation of Web Components using React.",
-  "main": "index.js",
+  "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "scripts": {
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src"
   },
   "repository": {
     "type": "git",
@@ -14,8 +14,7 @@
   "keywords": [
     "React",
     "HTMLElement",
-    "Web",
-    "Components"
+    "Web Components"
   ],
   "author": "Steve Matney",
   "license": "ISC",
@@ -42,6 +41,7 @@
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
+    "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "eslint": "^6.5.1",
@@ -55,7 +55,6 @@
     "lint-staged": "^10.0.8",
     "prettier": "1.19.1",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "typescript": "^3.8.3"
+    "react-dom": "^16.13.0"
   }
 }
