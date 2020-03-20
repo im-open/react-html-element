@@ -23,6 +23,19 @@
     "url": "https://github.com/WTW-IM/react-html-element/issues"
   },
   "homepage": "https://github.com/WTW-IM/react-html-element#readme",
+  "lint-staged": {
+    "packages/es-components/src/**/*.js": [
+      "prettier --single-quote --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "prettier": {
     "singleQuote": true
   },
@@ -36,6 +49,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "prettier": "1.19.1",
     "typescript": "^3.8.3"
   },
