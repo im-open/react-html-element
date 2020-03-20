@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/WTW-IM/react-html-element/issues"
   },
-  "homepage": "https://github.com/WTW-IM/react-html-element#readme"
+  "homepage": "https://github.com/WTW-IM/react-html-element#readme",
+  "prettier": {
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "prettier": "1.19.1"
+  }
 }
