@@ -2,10 +2,13 @@
   "name": "react-html-element",
   "version": "0.0.1",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
@@ -55,6 +58,7 @@
     "lint-staged": "^10.0.8",
     "prettier": "1.19.1",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "typescript": "^3.8.3"
   }
 }
