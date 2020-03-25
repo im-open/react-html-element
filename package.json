@@ -4,10 +4,13 @@
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "npm run lint && jest && npm run build",
     "build": "tsc",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -26,10 +29,9 @@
   },
   "homepage": "https://github.com/WTW-IM/react-html-element#readme",
   "lint-staged": {
-    "src/**/*": [
+    "src/**/*.(j|t)s?(x)": [
       "prettier --single-quote --write",
-      "eslint --parser-options \"{project: './tsconfig.json'}\" --fix",
-      "eslint --parser-options \"{project: './test/tsconfig.json'}\" --fix test"
+      "eslint --fix"
     ]
   },
   "husky": {

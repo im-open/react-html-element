@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { getByText, waitFor, queryByTestId } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
-import ReactHTMLElement from '../src/ReactHTMLElement';
+import ReactHTMLElement from '../ReactHTMLElement';
 
-function ReactTest() {
+function ReactTest(): React.ReactElement {
   const [iteration, setIteration] = useState(0);
   return (
     <>
       <button
         id="iterate-button"
-        onClick={() => setIteration(prevIteration => prevIteration + 1)}
+        type="button"
+        onClick={(): void => setIteration((prevIteration) => prevIteration + 1)}
       >
         Iterate
       </button>
@@ -20,7 +21,7 @@ function ReactTest() {
 }
 
 class ReactTestComponent extends ReactHTMLElement {
-  connectedCallback() {
+  connectedCallback(): void {
     ReactDOM.render(<ReactTest />, this.mountPoint);
   }
 }
@@ -28,7 +29,7 @@ class ReactTestComponent extends ReactHTMLElement {
 customElements.define('react-test', ReactTestComponent);
 
 function getDocument(): HTMLElement {
-  var testElement = document.createElement('react-test');
+  const testElement = document.createElement('react-test');
   document.body.appendChild(testElement);
   return (testElement.shadowRoot as unknown) as HTMLElement;
 }
