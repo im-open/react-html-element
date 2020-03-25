@@ -48,7 +48,7 @@ class ReactHTMLElement extends HTMLElement {
   }
 
   disconnectedCallback(): void {
-    if (!this._mountPoint) return;
+    if (!this._mountPoint || !this._mountPoint?.isConnected) return;
     ReactDOM.unmountComponentAtNode(this.mountPoint);
   }
 

@@ -2,6 +2,7 @@
   "extends": "../tsconfig",
   "include": ["."],
   "compilerOptions": {
-    "emit": false
+    "emit": false,
+    "jsx": "react"
   }
 }

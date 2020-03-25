@@ -28,7 +28,8 @@
   "lint-staged": {
     "src/**/*": [
       "prettier --single-quote --write",
-      "eslint --parser-options \"{project: './tsconfig.json'}\" --fix"
+      "eslint --parser-options \"{project: './tsconfig.json'}\" --fix",
+      "eslint --parser-options \"{project: './test/tsconfig.json'}\" --fix test"
     ]
   },
   "husky": {
@@ -45,13 +46,19 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
+    "@testing-library/dom": "^7.1.1",
+    "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^10.0.1",
     "@types/jest": "^25.1.4",
     "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
+    "babel-loader": "^8.1.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-typescript": "^7.2.0",
     "eslint-config-prettier": "^6.10.0",
@@ -61,6 +68,7 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^10.0.8",
     "prettier": "1.19.1",
     "react": "^16.13.0",
