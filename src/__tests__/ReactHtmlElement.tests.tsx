@@ -5,17 +5,17 @@ import '@testing-library/jest-dom/extend-expect';
 import ReactHTMLElement from '../ReactHTMLElement';
 
 function ReactTest(): React.ReactElement {
-  const [iteration, setIteration] = useState(0);
+  const [increment, setIncrement] = useState(0);
   return (
     <>
       <button
         id="iterate-button"
         type="button"
-        onClick={(): void => setIteration((prevIteration) => prevIteration + 1)}
+        onClick={(): void => setIncrement((prevIncrement) => prevIncrement + 1)}
       >
-        Iterate
+        Increment
       </button>
-      <div data-testid="iteration">{iteration}</div>
+      <div data-testid="current-increment">{increment}</div>
     </>
   );
 }
@@ -36,8 +36,10 @@ function getDocument(): HTMLElement {
 
 it('renders interactable react', async () => {
   const container = getDocument();
-  getByText(container, 'Iterate').click();
+  getByText(container, 'Increment').click();
   await waitFor(() => {
-    expect(queryByTestId(container, 'iteration')).toHaveTextContent('1');
+    expect(queryByTestId(container, 'current-increment')).toHaveTextContent(
+      '1',
+    );
   });
 });
