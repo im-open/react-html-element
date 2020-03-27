@@ -1,6 +1,6 @@
 # react-html-element
 
-[![Build Status](https://travis-ci.org/WTW-IM/react-html-element.svg?branch=master)](https://travis-ci.org/github/WTW-IM/react-html-element)
+[![Build Status](https://travis-ci.com/WTW-IM/react-html-element.svg?branch=master)](https://travis-ci.com/github/WTW-IM/react-html-element)
 [![npm version](https://badge.fury.io/js/react-html-element.svg)](https://badge.fury.io/js/react-html-element)
 
 ## The Problem
@@ -103,10 +103,9 @@ class IncrementerComponent extends ReactHTMLElement {
 customElements.define('incrementer', ReactTestComponent);
 ```
 
-
 # Contributing
 
-This package uses `semantic-release`. Changes will be compiled into a changelog and the package  versioned, tagged and published automatically.
+This package uses `semantic-release`. Changes will be compiled into a changelog and the package versioned, tagged and published automatically.
 Please ensure your commit messages adhere to the following structure:
 
 ```
