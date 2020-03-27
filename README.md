@@ -77,7 +77,7 @@ This will allow us to utilize our Web Component as an element in any HTML:
 
 ### this.mountPoint And Using Custom Templates
 
-`this.mountPoint` is a getter that establishes the Shadow DOM for your Web Component and provides a DOM element to mount to. By default, this is just a `div`, but you can utilize a template and target a specific mount position within it by passing the template and a CSS selector into `ReactHTMLElement`'s constructor. Our example from above, would look like this, with a custom template and mount point:
+`this.mountPoint` is a getter that establishes the Shadow DOM for your Web Component and provides a DOM element to mount to. By default, this is just a `div`, but you can utilize a template and target a specific mount position within it by passing the template and a CSS selector into `ReactHTMLElement`'s constructor. Our example from above would look like this, with a custom template and mount point:
 
 ```typescript
 import React, { useState, useEffect } from 'react';

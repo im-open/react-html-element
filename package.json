@@ -30,8 +30,11 @@
   "homepage": "https://github.com/WTW-IM/react-html-element#readme",
   "lint-staged": {
     "src/**/*.(j|t)s?(x)": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "eslint --fix"
+    ],
+    "*.md": [
+      "prettier --write --parser markdown"
     ]
   },
   "husky": {
