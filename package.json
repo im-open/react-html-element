@@ -30,17 +30,17 @@
   "homepage": "https://github.com/WTW-IM/react-html-element#readme",
   "lint-staged": {
     "src/**/*.(j|t)s?(x)": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "eslint --fix"
+    ],
+    "*.md": [
+      "prettier --write --parser markdown"
     ]
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "prettier": {
-    "singleQuote": true
   },
   "peerDependencies": {
     "react": "^16.13.0",
