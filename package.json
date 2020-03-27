@@ -42,9 +42,6 @@
       "pre-commit": "lint-staged"
     }
   },
-  "prettier": {
-    "singleQuote": true
-  },
   "peerDependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
