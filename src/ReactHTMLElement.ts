@@ -49,7 +49,7 @@ class ReactHTMLElement extends HTMLElement {
 
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
-    ReactDOM.unmountComponentAtNode(this.mountPoint);
+    ReactDOM.unmountComponentAtNode(this._mountPoint);
   }
 
   constructor(template = '<div></div>', mountSelector = 'div') {

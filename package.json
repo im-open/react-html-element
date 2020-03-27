@@ -4,10 +4,13 @@
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "npm run lint && npm run build",
+    "test": "npm run lint && npm run build && jest",
     "build": "tsc",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --parser-options \"{project: './tsconfig.json'}\" ./src",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -26,9 +29,9 @@
   },
   "homepage": "https://github.com/WTW-IM/react-html-element#readme",
   "lint-staged": {
-    "src/**/*": [
+    "src/**/*.(j|t)s?(x)": [
       "prettier --single-quote --write",
-      "eslint --parser-options \"{project: './tsconfig.json'}\" --fix"
+      "eslint --fix"
     ]
   },
   "husky": {
@@ -44,9 +47,20 @@
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.9.0",
+    "@testing-library/dom": "^7.1.1",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
+    "@types/jest": "^25.1.4",
     "@types/react-dom": "^16.9.5",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
+    "babel-loader": "^8.1.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-typescript": "^7.2.0",
     "eslint-config-prettier": "^6.10.0",
@@ -55,6 +69,8 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^10.0.8",
     "prettier": "1.19.1",
     "react": "^16.13.0",

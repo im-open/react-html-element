@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig",
+  "include": ["./"],
+  "exclude": [],
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react"
+  }
+}

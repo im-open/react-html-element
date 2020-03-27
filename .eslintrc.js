@@ -1,6 +1,9 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: ['./tsconfig.json', './src/__tests__/tsconfig.json']
+  },
   plugins: ['@typescript-eslint'],
   extends: [
     'airbnb-typescript',
@@ -11,6 +14,8 @@ module.exports = {
   ],
   rules: {
     'no-underscore-dangle': 'off',
-    'max-len': ['error', { code: 150 }]
+    'max-len': ['error', { code: 150 }],
+    'react/require-default-props': 0,
+    'react/prop-types': 0
   }
 };
