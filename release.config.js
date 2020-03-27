@@ -1,5 +1,5 @@
 module.exports = {
-  repositoryUrl: 'git@github.com:WTW-IM/babel-preset-wtw-im.git',
+  repositoryUrl: 'git@github.com:WTW-IM/react-html-element.git',
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
