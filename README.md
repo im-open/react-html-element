@@ -1,6 +1,7 @@
 # react-html-element
 
 [![Build Status](https://travis-ci.org/WTW-IM/react-html-element.svg?branch=master)](https://travis-ci.org/github/WTW-IM/react-html-element)
+[![npm version](https://badge.fury.io/js/react-html-element.svg)](https://badge.fury.io/js/react-html-element)
 
 ## The Problem
 
@@ -101,3 +102,17 @@ class IncrementerComponent extends ReactHTMLElement {
 
 customElements.define('incrementer', ReactTestComponent);
 ```
+
+
+# Contributing
+
+This package uses `semantic-release`. Changes will be compiled into a changelog and the package  versioned, tagged and published automatically.
+Please ensure your commit messages adhere to the following structure:
+
+```
+<type>: <subject>
+<BLANK LINE>
+<body>
+```
+
+Only the header is mandatory. The supported types are based off of the [ESLint Convention](https://github.com/conventional-changelog/conventional-changelog/tree/35e279d40603b0969c6d622514f5c0984c5bf309/packages/conventional-changelog-eslint).
