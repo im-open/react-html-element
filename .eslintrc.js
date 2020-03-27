@@ -14,6 +14,8 @@ module.exports = {
   ],
   rules: {
     'no-underscore-dangle': 'off',
-    'max-len': ['error', { code: 150 }]
+    'max-len': ['error', { code: 150 }],
+    'react/require-default-props': 0,
+    'react/prop-types': 0
   }
 };

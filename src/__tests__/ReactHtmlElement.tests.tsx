@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { getByText, waitFor, queryByTestId } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import ReactHTMLElement from '../ReactHTMLElement';
 
-function ReactTest(): React.ReactElement {
+function ReactTest({ onUnmount = (): void => undefined }): React.ReactElement {
   const [increment, setIncrement] = useState(0);
+  useEffect(() => (): void => onUnmount());
   return (
     <>
       <button
@@ -21,15 +22,20 @@ function ReactTest(): React.ReactElement {
 }
 
 class ReactTestComponent extends ReactHTMLElement {
+  public onUnmount = (): void => undefined;
+
   connectedCallback(): void {
-    ReactDOM.render(<ReactTest />, this.mountPoint);
+    ReactDOM.render(<ReactTest onUnmount={this.onUnmount} />, this.mountPoint);
   }
 }
 
 customElements.define('react-test', ReactTestComponent);
 
-function getDocument(): HTMLElement {
-  const testElement = document.createElement('react-test');
+function getDocument(onUnmount = (): void => undefined): HTMLElement {
+  const testElement = document.createElement(
+    'react-test',
+  ) as ReactTestComponent;
+  testElement.onUnmount = onUnmount;
   document.body.appendChild(testElement);
   return (testElement.shadowRoot as unknown) as HTMLElement;
 }
@@ -42,4 +48,18 @@ it('renders interactable react', async () => {
       '1',
     );
   });
+});
+
+it('unmounts when it is removed', async () => {
+  let unmounted = false;
+  getDocument(() => {
+    unmounted = true;
+  });
+  const testElement = document.querySelector('react-test');
+  testElement?.remove();
+  await waitFor(() => expect(unmounted).toBeTruthy());
+});
+
+afterEach(() => {
+  document.body.innerHTML = '';
 });
