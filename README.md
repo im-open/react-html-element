@@ -59,18 +59,44 @@ customElements.define('incrementer', ReactTestComponent);
 
 The key pieces of code are `... extends ReactHTMLElement` and `this.mountPoint`.
 
+> One thing to remember is that you will need to load [the webcomponentsjs polyfills](https://www.webcomponents.org/polyfills) for `ReactHTMLElement` to work in all browsers. The polyfills should be in the `<head>`, and should look something like this:
+>
+> ```html
+> <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/webcomponents-bundle.js"></script>
+> <script>
+>   if (!window.customElements) {
+>     document.write('<!--');
+>   }
+> </script>
+> <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/custom-elements-es5-adapter.js"></script>
+> <!--- We use the closing bracket of this comment to close off the above opening comment, if it gets written -->
+> ```
+>
+> There are many ways to implement these polyfills, and you can explore them in the [webpcomponentsjs README](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#how-to-use).
+
 This will allow us to utilize our Web Component as an element in any HTML:
 
 ```html
 <html>
   <head>
     <title>Incrementer Example</title>
+    <!-- Load the polyfills -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/webcomponents-bundle.js"></script>
+    <script>
+      if (!window.customElements) {
+        document.write('<!--');
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/custom-elements-es5-adapter.js"></script>
+    <!--- We use the closing bracket of this comment to close off the above opening comment, if it gets written -->
+    <!-- load your web component -->
     <script src="./path/to/incrementer.js"></script>
   </head>
   <body>
     <h1>
       Behold: An Incrementer
     </h1>
+    <!-- put your web component in your html -->
     <incrementer></incrementer>
   </body>
 </html>
