@@ -71,6 +71,8 @@ The key pieces of code are `... extends ReactHTMLElement` and `this.mountPoint`.
 > <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/custom-elements-es5-adapter.js"></script>
 > <!--- We use the closing bracket of this comment to close off the above opening comment, if it gets written -->
 > ```
+>
+> There are many ways to implement these polyfills, and you can explore them in the [webpcomponentsjs README](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#how-to-use).
 
 This will allow us to utilize our Web Component as an element in any HTML:
 
