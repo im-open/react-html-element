@@ -8,6 +8,7 @@ interface LooseShadowRoot extends ShadowRoot {
 function retargetReactEvents(container: Node, shadow: LooseShadowRoot): void {
   Object.defineProperty(container, 'ownerDocument', { value: shadow });
   /* eslint-disable no-param-reassign */
+  shadow.defaultView = window;
   shadow.createElement = (
     tagName: string,
     options?: ElementCreationOptions,
