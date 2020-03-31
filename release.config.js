@@ -4,8 +4,9 @@ module.exports = {
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
     '@semantic-release/changelog',
+    '@semantic-release/github',
     [
-      '@semantic-release/github',
+      '@semantic-release/git',
       {
         message: 'Docs: ${nextRelease.version} [skip ci]\n\n${nextRelease.note}'
       }
