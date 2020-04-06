@@ -59,7 +59,7 @@ customElements.define('incrementer', ReactTestComponent);
 
 The key pieces of code are `... extends ReactHTMLElement` and `this.mountPoint`.
 
-> One thing to remember is that you will need to load [the webcomponentsjs polyfills](https://www.webcomponents.org/polyfills) for `ReactHTMLElement` to work in all browsers. The polyfills should be in the `<head>`, and should look something like this:
+> One thing to remember is that you will need to load [the webcomponentsjs polyfills](https://www.webcomponents.org/polyfills) for `ReactHTMLElement` to work in all browsers. Be sure to include [the ES5 adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs), as we currently transpile `ReactHTMLElement` down to ES5. The polyfills should be in the `<head>`, and should look something like this:
 >
 > ```html
 > <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.3/webcomponents-bundle.js"></script>
