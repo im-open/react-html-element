@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import forceRetarget from './forcedRetargeting';
 
 interface LooseShadowRoot extends ShadowRoot {
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -19,6 +20,7 @@ function retargetReactEvents(container: Node, shadow: LooseShadowRoot): void {
     options: ElementCreationOptions,
   ): Element => document.createElementNS(ns, tagName, options);
   shadow.createTextNode = (text: string): Text => document.createTextNode(text);
+  forceRetarget(shadow);
   /* eslint-enable no-param-reassign */
 }
 
