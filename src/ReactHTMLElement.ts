@@ -6,7 +6,10 @@ interface LooseShadowRoot extends ShadowRoot {
 }
 
 // See https://github.com/facebook/react/issues/9242#issuecomment-543117675
-function retargetReactEvents(container: Node, shadow: LooseShadowRoot): void {
+function retargetReactEvents(
+  container: Node,
+  shadow: LooseShadowRoot,
+): () => void {
   Object.defineProperty(container, 'ownerDocument', { value: shadow });
   /* eslint-disable no-param-reassign */
   shadow.defaultView = window;
@@ -20,7 +23,7 @@ function retargetReactEvents(container: Node, shadow: LooseShadowRoot): void {
     options: ElementCreationOptions,
   ): Element => document.createElementNS(ns, tagName, options);
   shadow.createTextNode = (text: string): Text => document.createTextNode(text);
-  forceRetarget(shadow);
+  return forceRetarget(shadow);
   /* eslint-enable no-param-reassign */
 }
 
@@ -31,6 +34,8 @@ class ReactHTMLElement extends HTMLElement {
 
   private mountSelector: string;
 
+  private retargetCleanupFunction: () => void;
+
   get mountPoint(): Element {
     if (this._mountPoint) return this._mountPoint;
 
@@ -38,7 +43,7 @@ class ReactHTMLElement extends HTMLElement {
     shadow.innerHTML = this.template;
     this._mountPoint = shadow.querySelector(this.mountSelector) as Element;
 
-    retargetReactEvents(this._mountPoint, shadow);
+    this.retargetCleanup = retargetReactEvents(this._mountPoint, shadow);
 
     return this._mountPoint;
   }
@@ -46,12 +51,23 @@ class ReactHTMLElement extends HTMLElement {
   set mountPoint(mount: Element) {
     this._mountPoint = mount;
     if (this.shadowRoot) {
-      retargetReactEvents(mount, this.shadowRoot);
+      this.retargetCleanup = retargetReactEvents(mount, this.shadowRoot);
     }
+  }
+
+  get retargetCleanup(): () => void {
+    return this.retargetCleanupFunction;
+  }
+
+  set retargetCleanup(cleanupFunction: () => void) {
+    // Ensure that we cleanup an old listeners before we forget the cleanup function.
+    this.retargetCleanup();
+    this.retargetCleanupFunction = cleanupFunction;
   }
 
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
+    this.retargetCleanup();
     ReactDOM.unmountComponentAtNode(this._mountPoint);
   }
 
@@ -59,6 +75,7 @@ class ReactHTMLElement extends HTMLElement {
     super();
     this.template = template;
     this.mountSelector = mountSelector;
+    this.retargetCleanupFunction = () => {};
   }
 }
 

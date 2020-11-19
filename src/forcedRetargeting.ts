@@ -7,6 +7,7 @@ const reactEvents = [
   'onMouseOut',
   'onMouseOver',
   'onMouseUp',
+  'onClick',
 ];
 
 function findReactProperty(item: any, propertyPrefix: string): any {
