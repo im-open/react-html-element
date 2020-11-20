@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/WTW-IM/react-html-element/compare/v2.0.0...v2.1.0) (2020-11-20)
+
+
+### Fix
+
+* cleanup composedpath return ([163b178](https://github.com/WTW-IM/react-html-element/commit/163b17879cfbaea459a015ba1032ffa218aaaff0))
+* make sure to call cleanup function ([49615d1](https://github.com/WTW-IM/react-html-element/commit/49615d199126217eb1d046a9f4eac7298b38f766))
+* remove onclick ([c845c02](https://github.com/WTW-IM/react-html-element/commit/c845c0293fdaf53da8be52d62eacd43ec6df37ab))
+
+### Update
+
+* ensure mouse events are on shadow root ([4a20433](https://github.com/WTW-IM/react-html-element/commit/4a20433798fb17e7536f7a71aee161cd2f200719))
+
 # [2.0.0](https://github.com/WTW-IM/react-html-element/compare/v1.1.0...v2.0.0) (2020-05-26)
 
 
