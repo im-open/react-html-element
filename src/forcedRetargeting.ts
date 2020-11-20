@@ -51,7 +51,9 @@ function dispatchEvent(
   }
 }
 
-function composedPath(el: HTMLElement | null): any {
+function composedPath(
+  el: HTMLElement | null,
+): (Node | (Window & typeof globalThis))[] {
   const path = [];
   while (el) {
     path.push(el);
@@ -62,7 +64,7 @@ function composedPath(el: HTMLElement | null): any {
     }
     el = el.parentElement;
   }
-  return [el];
+  return [];
 }
 
 export default function retargetEvents(shadowRoot: Node): () => void {
