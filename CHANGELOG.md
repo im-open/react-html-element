@@ -1,3 +1,14 @@
+# [2.2.0](https://github.com/WTW-IM/react-html-element/compare/v2.1.0...v2.2.0) (2021-01-12)
+
+
+### Build
+
+* updating vulnerable build dependencies ([cdf5e6a](https://github.com/WTW-IM/react-html-element/commit/cdf5e6a4520ef3fe0284c99983e9e428240f0986))
+
+### Update
+
+* importing es5 polyfills by default ([3566c5b](https://github.com/WTW-IM/react-html-element/commit/3566c5ba9deffb304bbba91ced5d92c6d26672a2))
+
 # [2.1.0](https://github.com/WTW-IM/react-html-element/compare/v2.0.0...v2.1.0) (2020-11-20)
 
 
