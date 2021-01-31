@@ -21,6 +21,13 @@ class ReactHTMLElement extends HTMLElement {
     this._mountPoint = mount;
   }
 
+  render(
+    app: Parameters<ReactDOM.Renderer>[0][number]
+  ): ReturnType<ReactDOM.Renderer> {
+    // eslint-disable-next-line react/no-render-return-value
+    return ReactDOM.render(app, this.mountPoint);
+  }
+
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
     ReactDOM.unmountComponentAtNode(this._mountPoint);

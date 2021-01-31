@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import { getByText, waitFor, queryByTestId } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import ReactHTMLElement from '../ReactHTMLElement';
@@ -25,7 +24,7 @@ class ReactTestComponent extends ReactHTMLElement {
   public onUnmount = (): void => undefined;
 
   connectedCallback(): void {
-    ReactDOM.render(<ReactTest onUnmount={this.onUnmount} />, this.mountPoint);
+    this.render(<ReactTest onUnmount={this.onUnmount} />);
   }
 }
 
@@ -33,7 +32,7 @@ customElements.define('react-test', ReactTestComponent);
 
 function getDocument(onUnmount = (): void => undefined): HTMLElement {
   const testElement = document.createElement(
-    'react-test',
+    'react-test'
   ) as ReactTestComponent;
   testElement.onUnmount = onUnmount;
   document.body.appendChild(testElement);
@@ -45,7 +44,7 @@ it('renders interactable react', async () => {
   getByText(container, 'Increment').click();
   await waitFor(() => {
     expect(queryByTestId(container, 'current-increment')).toHaveTextContent(
-      '1',
+      '1'
     );
   });
 });
