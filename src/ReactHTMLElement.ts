@@ -1,18 +1,32 @@
 import ReactDOM from 'react-dom';
 
 class ReactHTMLElement extends HTMLElement {
+  private _initialized?: boolean;
+
   private _mountPoint?: Element;
+
+  private getShadowRoot(): ShadowRoot {
+    return this.shadowRoot || this.attachShadow({ mode: 'open' });
+  }
 
   private template: string;
 
   private mountSelector: string;
 
+  get shadow(): ShadowRoot {
+    if (this._initialized) return this.getShadowRoot();
+
+    const shadow = this.getShadowRoot();
+    shadow.innerHTML = this.template;
+    this._initialized = true;
+
+    return shadow;
+  }
+
   get mountPoint(): Element {
     if (this._mountPoint) return this._mountPoint;
 
-    const shadow = this.attachShadow({ mode: 'open' });
-    shadow.innerHTML = this.template;
-    this._mountPoint = shadow.querySelector(this.mountSelector) as Element;
+    this._mountPoint = this.shadow.querySelector(this.mountSelector) as Element;
 
     return this._mountPoint;
   }
