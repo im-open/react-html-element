@@ -14,6 +14,12 @@ module.exports = {
       {
         message:
           'Docs: ${nextRelease.version} [skip ci]\n\n${nextRelease.note}',
+        assets: [
+          'CHANGELOG.md',
+          'package.json',
+          'package-lock.json',
+          'npm-shrinkwrap.json',
+        ],
       },
     ],
     '@semantic-release/npm',
