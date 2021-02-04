@@ -6,7 +6,7 @@
 ## NOTE:
 
 This package works with React at version 17. For version 16, [see the react-16
-branch of this repo](tree/react-16).
+branch of this repo](https://github.com/WTW-IM/react-html-element/tree/react-16).
 
 ## What is it?
 
