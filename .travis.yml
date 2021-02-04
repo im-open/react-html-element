@@ -5,8 +5,7 @@ node_js:
 
 stages:
   - test
-  - name: release
-    if: branch IN (master, react-16, react-17) && type != pull_request
+  - release
 
 jobs:
   include:
@@ -17,3 +16,6 @@ jobs:
         provider: script
         skip_cleanup: true
         script: npx semantic-release
+        on:
+          all_branches: true
+          condition: $TRAVIS_BRANCH =~ ^(master|react-16|react-17)$
