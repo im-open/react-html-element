@@ -10,7 +10,9 @@ branch of this repo](tree/react-16).
 
 ## What is it?
 
-`react-html-element` gives a few quality of life improvements over simply
+`react-html-element` gives a few quality of life improvements over using React
+in Web Components [as described in the React documentation](https://reactjs.org/docs/web-components.html).
+Read on to find out what you can get by using it!
 
 ## Installation
 
