@@ -1,3 +1,14 @@
+# [3.0.0-react-17.2](https://github.com/WTW-IM/react-html-element/compare/v3.0.0-react-17.1...v3.0.0-react-17.2) (2021-02-04)
+
+
+### Docs
+
+* describing why this is useful with React 17 ([c12ca21](https://github.com/WTW-IM/react-html-element/commit/c12ca21c9d0cff0c8636593d15889c641034205a))
+
+### Fix
+
+* ensuring we only load the HTML 5 Adapter when we need it ([871755f](https://github.com/WTW-IM/react-html-element/commit/871755fc4b78fc557e77bf3b7bd6048480b3a34d))
+
 # [3.0.0-react-17.1](https://github.com/WTW-IM/react-html-element/compare/v2.2.0...v3.0.0-react-17.1) (2021-02-04)
 
 
