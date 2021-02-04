@@ -3,6 +3,7 @@ module.exports = {
   branches: [
     { name: 'master' },
     { name: 'react-17', channel: 'react-17', prerelease: 'react-17' },
+    { name: 'react-16', channel: 'react-16' },
   ],
   plugins: [
     '@semantic-release/commit-analyzer',
