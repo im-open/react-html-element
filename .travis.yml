@@ -6,7 +6,7 @@ node_js:
 stages:
   - test
   - name: release
-    if: branch = master && type != pull_request
+    if: branch IN (master, react-16, react-17) && type != pull_request
 
 jobs:
   include:
