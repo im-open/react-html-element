@@ -1,8 +1,4 @@
-if (window.customElements) {
-  // eslint-disable-next-line global-require
-  require('@webcomponents/webcomponentsjs/custom-elements-es5-adapter');
-}
-// eslint-disable-next-line import/first
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter';
 import ReactHTMLElement from './ReactHTMLElement';
 
 export default ReactHTMLElement;
