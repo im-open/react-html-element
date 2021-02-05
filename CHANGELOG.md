@@ -1,3 +1,11 @@
+# [3.0.0-react-17.3](https://github.com/WTW-IM/react-html-element/compare/v3.0.0-react-17.2...v3.0.0-react-17.3) (2021-02-05)
+
+
+### Docs
+
+* completing React 17 docs ([1d48bc0](https://github.com/WTW-IM/react-html-element/commit/1d48bc0e31df2fa50de84fd930779c6c69cb8006))
+* fixing react-16 link ([43435a4](https://github.com/WTW-IM/react-html-element/commit/43435a4ccc425433afabaefd577aff633e0accff))
+
 # [3.0.0-react-17.2](https://github.com/WTW-IM/react-html-element/compare/v3.0.0-react-17.1...v3.0.0-react-17.2) (2021-02-04)
 
 
