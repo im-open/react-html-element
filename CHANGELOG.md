@@ -1,3 +1,38 @@
+# [3.0.0](https://github.com/WTW-IM/react-html-element/compare/v2.2.0...v3.0.0) (2021-02-10)
+
+
+### Breaking
+
+* removing event retargeting ([60abc05](https://github.com/WTW-IM/react-html-element/commit/60abc05ffed68591840c7651d0c3a49668c4d040))
+
+### Build
+
+* ensuring we push package.json with semantic-release commit ([f0531bc](https://github.com/WTW-IM/react-html-element/commit/f0531bca4998708fe7e37117e28a4e5ab213cf8c))
+* reconfiguring .travis.yml to use on conditions ([6ab64a3](https://github.com/WTW-IM/react-html-element/commit/6ab64a3794bd6fa6c308d7c7567382bba4e54361))
+* reconfiguring .travis.yml to use on conditions ([f587a7c](https://github.com/WTW-IM/react-html-element/commit/f587a7cc127ed61413c74cbcfc9f26bc7b015755))
+* running release build on react-16 and react-17 branches ([47ddaf4](https://github.com/WTW-IM/react-html-element/commit/47ddaf47a5b3133170c823491196e416d3e7da81))
+* running release build on react-16 and react-17 branches ([4abdde9](https://github.com/WTW-IM/react-html-element/commit/4abdde98d68464bd32b0f52acebee9701dde6815))
+* setting up release for react-17 ([9d9d4ad](https://github.com/WTW-IM/react-html-element/commit/9d9d4add5f77e7b6089195a357893abc1764a6fe))
+
+### Docs
+
+* 3.0.0-react-17.1 [skip ci] ([27b4af8](https://github.com/WTW-IM/react-html-element/commit/27b4af8ae15ed735d50f78a34d413f686156fdf9))
+* 3.0.0-react-17.2 [skip ci] ([82242c0](https://github.com/WTW-IM/react-html-element/commit/82242c0a692566f8486044248d1190d75119b1d7))
+* 3.0.0-react-17.3 [skip ci] ([9c61c45](https://github.com/WTW-IM/react-html-element/commit/9c61c4567c65af195acef226b25021a8e48238ca))
+* completing React 17 docs ([1d48bc0](https://github.com/WTW-IM/react-html-element/commit/1d48bc0e31df2fa50de84fd930779c6c69cb8006))
+* describing why this is useful with React 17 ([c12ca21](https://github.com/WTW-IM/react-html-element/commit/c12ca21c9d0cff0c8636593d15889c641034205a))
+* fixing react-16 link ([43435a4](https://github.com/WTW-IM/react-html-element/commit/43435a4ccc425433afabaefd577aff633e0accff))
+
+### Update
+
+* adding a base-level render function ([9cb8a6b](https://github.com/WTW-IM/react-html-element/commit/9cb8a6b5a5a66eafa827dfebe2e83577f7a70b68))
+* adding this.shadow for easy style placement ([1a5c275](https://github.com/WTW-IM/react-html-element/commit/1a5c2758acaf3850d67852efe61fa95899f00259))
+* ensuring we can accommodate lower versions of React 17 ([2cac97b](https://github.com/WTW-IM/react-html-element/commit/2cac97b4eea0305b018f87f65eca049d79520878))
+
+### Upgrade
+
+* updating all dependencies ([5737167](https://github.com/WTW-IM/react-html-element/commit/5737167f47ffb4b3e99fc7f15e4bd1f987663eb7))
+
 # [3.0.0-react-17.3](https://github.com/WTW-IM/react-html-element/compare/v3.0.0-react-17.2...v3.0.0-react-17.3) (2021-02-05)
 
 
