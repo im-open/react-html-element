@@ -13,10 +13,17 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        message: 'Docs: ${nextRelease.version} [skip ci]\n\n${nextRelease.note}'
-      }
+        message:
+          'Docs: ${nextRelease.version} [skip ci]\n\n${nextRelease.note}',
+        assets: [
+          'CHANGELOG.md',
+          'package.json',
+          'package-lock.json',
+          'npm-shrinkwrap.json',
+        ],
+      },
     ],
-    '@semantic-release/npm'
+    '@semantic-release/npm',
   ],
-  preset: 'eslint'
+  preset: 'eslint',
 };
