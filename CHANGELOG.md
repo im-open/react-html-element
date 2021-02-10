@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/WTW-IM/react-html-element/compare/v3.0.0...v3.1.0) (2021-02-10)
+
+
+### Update
+
+* ensuring we don't mount when not connected ([34cbd21](https://github.com/WTW-IM/react-html-element/commit/34cbd21c8b08c261b7315619a625d524e9519946))
+
 # [3.0.0](https://github.com/WTW-IM/react-html-element/compare/v2.2.0...v3.0.0) (2021-02-10)
 
 
