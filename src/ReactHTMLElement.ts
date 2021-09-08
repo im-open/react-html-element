@@ -5,13 +5,13 @@ class ReactHTMLElement extends HTMLElement {
 
   private _mountPoint?: Element;
 
-  private getShadowRoot(): ShadowRoot {
-    return this.shadowRoot || this.attachShadow({ mode: 'open' });
-  }
-
   private template: string;
 
   private mountSelector: string;
+
+  private getShadowRoot(): ShadowRoot {
+    return this.shadowRoot || this.attachShadow({ mode: 'open' });
+  }
 
   get shadow(): ShadowRoot {
     if (this._initialized) return this.getShadowRoot();
@@ -44,6 +44,10 @@ class ReactHTMLElement extends HTMLElement {
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
     ReactDOM.unmountComponentAtNode(this._mountPoint);
+  }
+
+  public hasTruthyAttribute(attr: string): boolean {
+    return this.hasAttribute(attr) && this.getAttribute(attr) !== 'false';
   }
 
   constructor(template = '<div></div>', mountSelector = 'div') {
