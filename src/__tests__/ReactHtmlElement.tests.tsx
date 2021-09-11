@@ -30,12 +30,18 @@ class ReactTestComponent extends ReactHTMLElement {
 
 customElements.define('react-test', ReactTestComponent);
 
-function getDocument(onUnmount = (): void => undefined): HTMLElement {
+function getDocument(
+  onUnmount = (): void => undefined,
+  attrs: Record<string, string | undefined> = {}
+): HTMLElement {
   const testElement = document.createElement(
     'react-test'
   ) as ReactTestComponent;
   testElement.onUnmount = onUnmount;
   document.body.appendChild(testElement);
+  Object.entries(attrs)
+    .filter(([, val]) => val !== undefined)
+    .forEach(([name, value]) => testElement.setAttribute(name, value as string));
   return (testElement.shadowRoot as unknown) as HTMLElement;
 }
 
@@ -58,6 +64,24 @@ it('unmounts when it is removed', async () => {
   testElement?.remove();
   await waitFor(() => expect(unmounted).toBeTruthy());
 });
+
+test.each([
+  { attrVal: '', expectedResult: true },
+  { attrVal: 'true', expectedResult: true },
+  { attrVal: 'false', expectedResult: false },
+  { attrVal: undefined, expectedResult: false },
+])(
+  'hasTruthyAttribute returns $0.expectedResult when it has the value "$0.attrVal"',
+  ({ attrVal, expectedResult }) => {
+    getDocument(() => ({}), { 'test-attr': attrVal });
+    const testComponent = document.querySelector(
+      'react-test'
+    ) as ReactTestComponent;
+    expect(testComponent.hasTruthyAttribute('test-attr')).toEqual(
+      expectedResult
+    );
+  }
+);
 
 afterEach(() => {
   document.body.innerHTML = '';
