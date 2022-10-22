@@ -1,0 +1,66 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - react-16
+jobs:
+  test:
+    name: "Test with Node version: ${{ matrix.node }}"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ node, lts/* ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Build
+        run: npm run build
+
+      - name: Run Jest
+        run: npx jest
+  publish:
+    if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/react-16' }}
+    needs: [test]
+    name: Publish NPM Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PIPELINE_BOT_PAT }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "React-HTML-Element Publish Bot"
+          git config user.email "react-html-element-bot@wtw.org"
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
+
