@@ -3,15 +3,15 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
       - react-16
 jobs:
   test:
-    name: "Test with Node version: ${{ matrix.node }}"
+    name: 'Test with Node version: ${{ matrix.node }}'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ node, lts/* ]
+        node: [node, lts/*]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -63,4 +63,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-

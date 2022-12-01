@@ -1,7 +1,7 @@
 module.exports = {
   repositoryUrl: 'git@github.com:WTW-IM/react-html-element.git',
   branches: [
-    { name: 'master' },
+    { name: 'main' },
     { name: 'react-17', channel: 'react-17', prerelease: 'react-17' },
     { name: 'react-16', channel: 'react-16' },
   ],
