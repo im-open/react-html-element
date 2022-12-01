@@ -2,14 +2,20 @@
   "name": "react-html-element",
   "version": "2.2.0",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "module/index.js",
+  "exports": {
+    "import": "./module/index.js",
+    "require": "./dist/index.js",
+    "default": "./module/index.js"
+  },
+  "types": "module/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "module"
   ],
   "scripts": {
     "test": "npm run lint && npm run build && jest",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.json && tsc -p require-tsconfig.json",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "prepublishOnly": "npm run build"
   },
@@ -44,8 +50,8 @@
     }
   },
   "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -56,14 +62,14 @@
     "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
     "@testing-library/dom": "^7.29.4",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@types/jest": "^26.0.20",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "conventional-changelog-eslint": "^3.0.9",
@@ -81,7 +87,7 @@
     "prettier": "2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "semantic-release": "^17.3.7",
+    "semantic-release": "^19.0.5",
     "typescript": "^4.1.3"
   },
   "dependencies": {
