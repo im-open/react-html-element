@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getByText, waitFor, queryByTestId } from '@testing-library/dom';
+import { findByText, waitFor, queryByTestId } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import ReactHTMLElement from '../ReactHTMLElement';
 
@@ -7,7 +7,7 @@ function ReactTest({ onUnmount = (): void => undefined }): React.ReactElement {
   const [increment, setIncrement] = useState(0);
   useEffect(() => (): void => onUnmount());
   return (
-    <>
+    <div data-testid="container">
       <button
         id="iterate-button"
         type="button"
@@ -16,7 +16,7 @@ function ReactTest({ onUnmount = (): void => undefined }): React.ReactElement {
         Increment
       </button>
       <div data-testid="current-increment">{increment}</div>
-    </>
+    </div>
   );
 }
 
@@ -30,18 +30,23 @@ class ReactTestComponent extends ReactHTMLElement {
 
 customElements.define('react-test', ReactTestComponent);
 
-function getDocument(onUnmount = (): void => undefined): HTMLElement {
+async function getDocument(
+  onUnmount = (): void => undefined
+): Promise<HTMLElement> {
   const testElement = document.createElement(
     'react-test'
   ) as ReactTestComponent;
   testElement.onUnmount = onUnmount;
   document.body.appendChild(testElement);
-  return (testElement.shadowRoot as unknown) as HTMLElement;
+  await waitFor(() => expect(testElement.shadowRoot).toBeTruthy());
+  return testElement.shadowRoot?.querySelector(
+    'div[data-testid=container]'
+  ) as HTMLElement;
 }
 
 it('renders interactable react', async () => {
-  const container = getDocument();
-  getByText(container, 'Increment').click();
+  const container = await getDocument();
+  (await findByText(container, 'Increment')).click();
   await waitFor(() => {
     expect(queryByTestId(container, 'current-increment')).toHaveTextContent(
       '1'
@@ -51,7 +56,7 @@ it('renders interactable react', async () => {
 
 it('unmounts when it is removed', async () => {
   let unmounted = false;
-  getDocument(() => {
+  await getDocument(() => {
     unmounted = true;
   });
   const testElement = document.querySelector('react-test');

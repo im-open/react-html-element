@@ -8,7 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "es6",
+    "module": "es2020",
     "moduleResolution": "node",
     "outDir": "module",
     "resolveJsonModule": true,
@@ -17,5 +17,5 @@
     "target": "es6"
   },
   "include": ["src"],
-  "exclude": ["src/__tests__", "node_modules"]
+  "exclude": ["src/__tests__"]
 }

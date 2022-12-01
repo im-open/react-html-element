@@ -1,8 +1,10 @@
 import { version as reactVersion } from 'react';
 import ReactDOM from 'react-dom';
-import type { Root, createRoot as CreateRoot } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
 
-const [, major] = /^(\d+)\.\d+\.\d+$/.exec(reactVersion)!;
+type Renderable = Parameters<ReactDOM.Renderer>[0][number];
+
+const [, major] = /^(\d+)\.\d+\.\d+$/.exec(reactVersion) || [undefined, '16'];
 const reactMajor = Number(major);
 
 const isPreEighteen = reactMajor < 18;
@@ -44,17 +46,15 @@ class ReactHTMLElement extends HTMLElement {
     this._mountPoint = mount;
   }
 
-  get root(): Root {
+  async root(): Promise<Root> {
     if (this._root) return this._root;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires, global-require
-    const createRoot = require('react-dom/client')
-      .createRoot as typeof CreateRoot;
+    const { createRoot } = await import('react-dom/client');
     this._root = createRoot(this.mountPoint);
     return this._root;
   }
 
-  render(app: Parameters<ReactDOM.Renderer>[0][number]): void {
+  render(app: Renderable): void {
     if (!this.isConnected) return;
 
     if (isPreEighteen) {
@@ -62,7 +62,12 @@ class ReactHTMLElement extends HTMLElement {
       return;
     }
 
-    this.root.render(app);
+    void this.rootRender(app);
+  }
+
+  async rootRender(app: Renderable): Promise<void> {
+    const root = await this.root();
+    root.render(app);
   }
 
   disconnectedCallback(): void {
