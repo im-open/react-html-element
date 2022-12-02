@@ -1,6 +1,6 @@
 {
   "name": "react-html-element",
-  "version": "2.2.0",
+  "version": "4.0.0-export-es-module.1",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "module/index.js",
   "exports": {

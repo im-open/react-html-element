@@ -1,3 +1,30 @@
+# [4.0.0-export-es-module.1](https://github.com/WTW-IM/react-html-element/compare/v3.1.0...v4.0.0-export-es-module.1) (2022-12-02)
+
+
+### Breaking
+
+* making the default module an ES module ([317de20](https://github.com/WTW-IM/react-html-element/commit/317de20ffbc3badc83dd0c9de8d2d2901a54efd3))
+
+### Build
+
+* releasing development builds with PRs ([4819511](https://github.com/WTW-IM/react-html-element/commit/4819511c16f42a99c965c51108de992d11bfe567))
+* replace travis pipeline with gha ([9c45a86](https://github.com/WTW-IM/react-html-element/commit/9c45a867b10a6606f4ed18a7fcd1d29af796c2df))
+* updating master references to main ([f5e6cf1](https://github.com/WTW-IM/react-html-element/commit/f5e6cf124cd0abd6ea88b4d1140f66f1b076bf24))
+
+### New
+
+* support react 18 createRoot ([addcbcb](https://github.com/WTW-IM/react-html-element/commit/addcbcb52ecb6d99851e955716a9565a7aba5944))
+
+### Update
+
+* doing root.render asynchronously ([ead4edc](https://github.com/WTW-IM/react-html-element/commit/ead4edcbcaca21efabb64541d492b6fc78538783))
+
+### Upgrade
+
+* Bump hosted-git-info from 2.8.8 to 2.8.9 ([5554000](https://github.com/WTW-IM/react-html-element/commit/55540006cf0d939dfe84fc48c39c3fad59fe55a9))
+* Bump lodash from 4.17.20 to 4.17.21 ([4d34e83](https://github.com/WTW-IM/react-html-element/commit/4d34e8349a80b0f701528a0b5f8b0eb0b6a99b64))
+* Bump y18n from 4.0.0 to 4.0.1 ([57d49c9](https://github.com/WTW-IM/react-html-element/commit/57d49c9f1f781e75c4a990f8254c7ee738c46591))
+
 # [3.1.0](https://github.com/WTW-IM/react-html-element/compare/v3.0.0...v3.1.0) (2021-02-10)
 
 
