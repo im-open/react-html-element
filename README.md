@@ -63,6 +63,78 @@ customElements.define('incrementer', ReactTestComponent);
 The key pieces of code are `... extends ReactHTMLElement` and `this.render`,
 which mounts our app to its designated `mountPoint`, [as described below](#thismountpoint-and-using-custom-templates).
 
+### Responding to Attribute Changes
+
+There are two approaches to responding to attribute updates.
+
+1. this.render()
+2. `attributeStore.setAttribute()`
+
+Calling `this.render()` in `attributeChangedCallback` is possible. As per the [react docs](beta.reactjs.org/apis/react-dom/render#updating-the-rendered-tree) it is possible to call the render function more than once on the same DOM node. It is possible to pass attributes as props this way. Please ensure you are only calling `this.render()` in `attributeChangedCallback()` while the web component is connected to the DOM.
+
+```typescript
+import React, { useEffect } from 'react';
+import ReactHTMLElement from 'react-html-element';
+
+const Greeting: React.FC<{ name: string }> = ({ name }) => (
+  <div>Hello, ${name}</div>
+);
+
+class GreetingComponent extends ReactHTMLElement {
+  static get observedAttributes() {
+    return ['name'];
+  }
+
+  renderApp() {
+    const name = this.getAttribute('name');
+    this.render(<Greeting name={name} />);
+  }
+
+  connectedCallback() {
+    this.renderApp();
+  }
+
+  attributeChangedCallback() {
+    if (this.isConnected) {
+      this.renderApp();
+    }
+  }
+}
+```
+
+Alternatively, you may use the `attributeStore` and `useWebComponentAttribute` hook to track attribute changes and update your app accordingly.
+
+```typescript
+import React from 'react';
+import ReactHTMLElement, {
+  attributeStore,
+  useWebComponentAttribute,
+} from 'react-html-element';
+
+const Greeting: React.FC = () => {
+  const name = useWebComponentAttribute('name');
+  return <div>Hello, ${name}</div>;
+};
+
+class GreetingComponent extends ReactHTMLElement {
+  static get observedAttributes() {
+    return ['name'];
+  }
+
+  connectedCallback() {
+    this.render(<Greeting />);
+  }
+
+  attributeChangedCallback(
+    name: string,
+    oldValue: string | null,
+    newValue: string | null
+  ) {
+    attributeStore.setAttribute(name, newValue);
+  }
+}
+```
+
 > ### Polyfills
 >
 > One thing to remember is that you will need to load [the webcomponentsjs polyfills](https://www.webcomponents.org/polyfills) for `ReactHTMLElement` to work in all browsers.
