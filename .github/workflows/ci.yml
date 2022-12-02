@@ -1,10 +1,7 @@
 name: CI
 on:
-  pull_request:
   push:
-    branches:
-      - main
-      - react-16
+
 jobs:
   test:
     name: 'Test with Node version: ${{ matrix.node }}'
@@ -34,7 +31,6 @@ jobs:
       - name: Run Jest
         run: npx jest
   publish:
-    if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/react-16' }}
     needs: [test]
     name: Publish NPM Package
     runs-on: ubuntu-latest
