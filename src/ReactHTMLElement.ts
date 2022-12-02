@@ -1,6 +1,6 @@
 import { version as reactVersion } from 'react';
 import ReactDOM from 'react-dom';
-import type { Root } from 'react-dom/client';
+import type { Root, createRoot as createRootOriginal } from 'react-dom/client';
 
 type Renderable = Parameters<ReactDOM.Renderer>[0][number];
 
@@ -8,6 +8,9 @@ const [, major] = /^(\d+)\.\d+\.\d+$/.exec(reactVersion) || [undefined, '16'];
 const reactMajor = Number(major);
 
 const isPreEighteen = reactMajor < 18;
+const REACT_DOM_CLIENT_IMPORT = isPreEighteen
+  ? './react-dom-client-polyfill'
+  : 'react-dom/client';
 
 class ReactHTMLElement extends HTMLElement {
   private _initialized?: boolean;
@@ -49,7 +52,12 @@ class ReactHTMLElement extends HTMLElement {
   async root(): Promise<Root> {
     if (this._root) return this._root;
 
-    const { createRoot } = await import('react-dom/client');
+    const { createRoot } = (await import(
+      /* webpackExports: ['createRoot'] */
+      `${REACT_DOM_CLIENT_IMPORT}`
+    )) as {
+      createRoot: typeof createRootOriginal;
+    };
     this._root = createRoot(this.mountPoint);
     return this._root;
   }
@@ -62,10 +70,10 @@ class ReactHTMLElement extends HTMLElement {
       return;
     }
 
-    void this.rootRender(app);
+    void this.renderRoot(app);
   }
 
-  async rootRender(app: Renderable): Promise<void> {
+  async renderRoot(app: Renderable): Promise<void> {
     const root = await this.root();
     root.render(app);
   }

@@ -3,6 +3,7 @@
   "version": "2.2.0",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "module/index.js",
+  "types": "types",
   "exports": {
     "import": "./module/index.js",
     "require": "./dist/index.js",
@@ -11,13 +12,14 @@
   "types": "module/index.d.ts",
   "files": [
     "dist",
-    "module"
+    "module",
+    "types"
   ],
   "scripts": {
     "test": "npm run lint && npm run build && jest",
     "build": "tsc -p tsconfig.json && tsc -p require-tsconfig.json",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
-    "prepublishOnly": "npm run build"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
