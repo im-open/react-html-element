@@ -1,9 +1,23 @@
+import { version as reactVersion } from 'react';
 import ReactDOM from 'react-dom';
+import type { Root, createRoot as createRootOriginal } from 'react-dom/client';
+
+type Renderable = Parameters<ReactDOM.Renderer>[0][number];
+
+const [, major] = /^(\d+)\.\d+\.\d+$/.exec(reactVersion) || [undefined, '16'];
+const reactMajor = Number(major);
+
+const isPreEighteen = reactMajor < 18;
+const REACT_DOM_CLIENT_IMPORT = isPreEighteen
+  ? './react-dom-client-polyfill'
+  : 'react-dom/client';
 
 class ReactHTMLElement extends HTMLElement {
   private _initialized?: boolean;
 
   private _mountPoint?: Element;
+
+  private _root?: Root;
 
   private getShadowRoot(): ShadowRoot {
     return this.shadowRoot || this.attachShadow({ mode: 'open' });
@@ -35,15 +49,44 @@ class ReactHTMLElement extends HTMLElement {
     this._mountPoint = mount;
   }
 
-  render(app: Parameters<ReactDOM.Renderer>[0][number]): void {
+  async root(): Promise<Root> {
+    if (this._root) return this._root;
+
+    const { createRoot } = (await import(
+      /* webpackExports: ['createRoot'] */
+      `${REACT_DOM_CLIENT_IMPORT}`
+    )) as {
+      createRoot: typeof createRootOriginal;
+    };
+    this._root = createRoot(this.mountPoint);
+    return this._root;
+  }
+
+  render(app: Renderable): void {
     if (!this.isConnected) return;
 
-    ReactDOM.render(app, this.mountPoint);
+    if (isPreEighteen) {
+      ReactDOM.render(app, this.mountPoint);
+      return;
+    }
+
+    void this.renderRoot(app);
+  }
+
+  async renderRoot(app: Renderable): Promise<void> {
+    const root = await this.root();
+    root.render(app);
   }
 
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
-    ReactDOM.unmountComponentAtNode(this._mountPoint);
+
+    if (isPreEighteen) {
+      ReactDOM.unmountComponentAtNode(this._mountPoint);
+      return;
+    }
+
+    this._root?.unmount();
   }
 
   constructor(template = '<div></div>', mountSelector = 'div') {

@@ -12,6 +12,8 @@ dist
 
 # production
 /dist
+/module
+/types
 
 # misc
 .DS_Store
