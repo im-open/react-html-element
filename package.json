@@ -1,15 +1,14 @@
 {
   "name": "react-html-element",
-  "version": "2.2.0",
+  "version": "4.0.0",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "module/index.js",
-  "types": "types",
+  "types": "module/index.d.ts",
   "exports": {
     "import": "./module/index.js",
     "require": "./dist/index.js",
     "default": "./module/index.js"
   },
-  "types": "module/index.d.ts",
   "files": [
     "dist",
     "module",
