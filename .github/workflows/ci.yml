@@ -51,8 +51,8 @@ jobs:
 
       - name: Set Commitbot Identity
         run: |
-          git config user.name "React-HTML-Element Publish Bot"
-          git config user.email "react-html-element-bot@wtw.org"
+          git config user.name "im-pipeline-bot"
+          git config user.email "73202619+im-pipeline-bot@users.noreply.github.com"
 
       - name: Semantic Release
         env:
