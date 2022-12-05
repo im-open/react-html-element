@@ -34,6 +34,14 @@ jobs:
     needs: [test]
     name: Publish NPM Package
     runs-on: ubuntu-latest
+    env:
+      GIT_AUTHOR_NAME: 'im-pipeline-bot'
+      GIT_AUTHOR_EMAIL: '73202619+im-pipeline-bot@users.noreply.github.com'
+      GIT_COMMITTER_NAME: 'im-pipeline-bot'
+      GIT_COMMITTER_EMAIL: '73202619+im-pipeline-bot@users.noreply.github.com'
+      GITHUB_TOKEN: ${{ secrets.PIPELINE_BOT_PAT }}
+      GH_TOKEN: ${{ secrets.PIPELINE_BOT_PAT }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -51,11 +59,4 @@ jobs:
         run: npm ci
 
       - name: Semantic Release
-        env:
-          GIT_AUTHOR_NAME: 'im-pipeline-bot'
-          GIT_AUTHOR_EMAIL: '73202619+im-pipeline-bot@users.noreply.github.com'
-          GIT_COMMITTER_NAME: 'im-pipeline-bot'
-          GIT_COMMITTER_EMAIL: '73202619+im-pipeline-bot@users.noreply.github.com'
-          GITHUB_TOKEN: ${{ secrets.PIPELINE_BOT_PAT }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
