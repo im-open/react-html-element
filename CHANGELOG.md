@@ -1,3 +1,14 @@
+## [4.0.1](https://github.com/WTW-IM/react-html-element/compare/v4.0.0...v4.0.1) (2022-12-07)
+
+
+### Build
+
+* ensuring we persist github credentials after checkout ([a128488](https://github.com/WTW-IM/react-html-element/commit/a12848851584b6ae88fd0a0d7a7a523a6dab2aff))
+
+### Fix
+
+* correcting 'types' property in package.json ([a9402b0](https://github.com/WTW-IM/react-html-element/commit/a9402b0578a1e3af8747aa760f76d908bc896c52))
+
 # [4.0.0](https://github.com/WTW-IM/react-html-element/compare/v3.1.0...v4.0.0) (2022-12-05)
 
 
