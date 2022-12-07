@@ -9,7 +9,6 @@
     "require": "./dist/index.js",
     "default": "./module/index.js"
   },
-  "types": "module/index.d.ts",
   "files": [
     "dist",
     "module",
