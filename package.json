@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "module/index.js",
-  "types": "module/index.d.ts",
+  "types": "types/index.d.ts",
   "exports": {
     "import": "./module/index.js",
     "require": "./dist/index.js",
