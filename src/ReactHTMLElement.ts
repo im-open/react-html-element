@@ -1,23 +1,16 @@
-import { version as reactVersion } from 'react';
-import ReactDOM from 'react-dom';
-import type { Root, createRoot as createRootOriginal } from 'react-dom/client';
+import type ReactDOM from 'react-dom';
+import type { Root } from 'react-dom/client';
+import { createRoot } from './react-dom-client';
 
 type Renderable = Parameters<ReactDOM.Renderer>[0][number];
-
-const [, major] = /^(\d+)\.\d+\.\d+$/.exec(reactVersion) || [undefined, '16'];
-const reactMajor = Number(major);
-
-const isPreEighteen = reactMajor < 18;
-const REACT_DOM_CLIENT_IMPORT = isPreEighteen
-  ? './react-dom-client-polyfill'
-  : 'react-dom/client';
+type ReactHTMLElementDOMRoot = Pick<Root, 'render' | 'unmount'>;
 
 class ReactHTMLElement extends HTMLElement {
   private _initialized?: boolean;
 
   private _mountPoint?: Element;
 
-  private _root?: Root;
+  private _root?: ReactHTMLElementDOMRoot;
 
   private getShadowRoot(): ShadowRoot {
     return this.shadowRoot || this.attachShadow({ mode: 'open' });
@@ -49,15 +42,9 @@ class ReactHTMLElement extends HTMLElement {
     this._mountPoint = mount;
   }
 
-  async root(): Promise<Root> {
+  root(): ReactHTMLElementDOMRoot {
     if (this._root) return this._root;
 
-    const { createRoot } = (await import(
-      /* webpackExports: ['createRoot'] */
-      `${REACT_DOM_CLIENT_IMPORT}`
-    )) as {
-      createRoot: typeof createRootOriginal;
-    };
     this._root = createRoot(this.mountPoint);
     return this._root;
   }
@@ -65,26 +52,16 @@ class ReactHTMLElement extends HTMLElement {
   render(app: Renderable): void {
     if (!this.isConnected) return;
 
-    if (isPreEighteen) {
-      ReactDOM.render(app, this.mountPoint);
-      return;
-    }
-
     void this.renderRoot(app);
   }
 
-  async renderRoot(app: Renderable): Promise<void> {
-    const root = await this.root();
+  renderRoot(app: Renderable): void {
+    const root = this.root();
     root.render(app);
   }
 
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
-
-    if (isPreEighteen) {
-      ReactDOM.unmountComponentAtNode(this._mountPoint);
-      return;
-    }
 
     this._root?.unmount();
   }
