@@ -5,12 +5,23 @@ import { getCreateRoot } from './react-dom-client';
 type Renderable = Parameters<ReactDOM.Renderer>[0][number];
 type ReactHTMLElementDOMRoot = Pick<Root, 'render' | 'unmount'>;
 
+const awaitValue = <T>(awaiter: () => T): Promise<T> => new Promise((resolve) => {
+    const result = awaiter();
+    if (result) {
+      resolve(result);
+    } else {
+      setTimeout(() => resolve(awaitValue(awaiter)), 100);
+    }
+  });
+
 class ReactHTMLElement extends HTMLElement {
   private _initialized?: boolean;
 
   private _mountPoint?: Element;
 
   private _root?: ReactHTMLElementDOMRoot;
+
+  private _awaitingRoot = false;
 
   private getShadowRoot(): ShadowRoot {
     return this.shadowRoot || this.attachShadow({ mode: 'open' });
@@ -43,9 +54,14 @@ class ReactHTMLElement extends HTMLElement {
   }
 
   async root(): Promise<ReactHTMLElementDOMRoot> {
+    if (this._awaitingRoot) {
+      await awaitValue(() => this._root);
+    }
     if (this._root) return this._root;
 
+    this._awaitingRoot = true;
     this._root = (await getCreateRoot())(this.mountPoint);
+    this._awaitingRoot = false;
     return this._root;
   }
 
