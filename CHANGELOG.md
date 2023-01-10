@@ -1,3 +1,12 @@
+## [4.0.2](https://github.com/WTW-IM/react-html-element/compare/v4.0.1...v4.0.2) (2023-01-10)
+
+
+### Fix
+
+* awaiting potential react-dom promise ([18421b6](https://github.com/WTW-IM/react-html-element/commit/18421b6c0b5106c0252e5d971884f829a5043c76))
+* ensuring we don't rerender while awaiting a root ([954ceeb](https://github.com/WTW-IM/react-html-element/commit/954ceeba2f6fc266522329042fe2494527ddc4a5))
+* properly handling global react-dom@18 ([2376cae](https://github.com/WTW-IM/react-html-element/commit/2376cae801153d615794265515fb3f4d7ea5ab71))
+
 ## [4.0.1](https://github.com/WTW-IM/react-html-element/compare/v4.0.0...v4.0.1) (2022-12-07)
 
 
