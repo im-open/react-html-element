@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { findByText, waitFor, queryByTestId } from '@testing-library/dom';
+import {
+  findByText,
+  waitFor,
+  queryByTestId,
+  findByTestId,
+} from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import ReactHTMLElement from '../ReactHTMLElement';
 
 function ReactTest({ onUnmount = (): void => undefined }): React.ReactElement {
   const [increment, setIncrement] = useState(0);
-  useEffect(() => (): void => onUnmount());
+  useEffect(() => (): void => onUnmount(), []);
   return (
     <div data-testid="container">
       <button
@@ -39,9 +44,10 @@ async function getDocument(
   testElement.onUnmount = onUnmount;
   document.body.appendChild(testElement);
   await waitFor(() => expect(testElement.shadowRoot).toBeTruthy());
-  return testElement.shadowRoot?.querySelector(
-    'div[data-testid=container]'
-  ) as HTMLElement;
+  return findByTestId(
+    (testElement.shadowRoot as unknown) as HTMLElement,
+    'container'
+  );
 }
 
 it('renders interactable react', async () => {

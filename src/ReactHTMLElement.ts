@@ -1,23 +1,27 @@
-import { version as reactVersion } from 'react';
-import ReactDOM from 'react-dom';
-import type { Root, createRoot as createRootOriginal } from 'react-dom/client';
+import type ReactDOM from 'react-dom';
+import type { Root } from 'react-dom/client';
+import { getCreateRoot } from './react-dom-client';
 
 type Renderable = Parameters<ReactDOM.Renderer>[0][number];
+type ReactHTMLElementDOMRoot = Pick<Root, 'render' | 'unmount'>;
 
-const [, major] = /^(\d+)\.\d+\.\d+$/.exec(reactVersion) || [undefined, '16'];
-const reactMajor = Number(major);
-
-const isPreEighteen = reactMajor < 18;
-const REACT_DOM_CLIENT_IMPORT = isPreEighteen
-  ? './react-dom-client-polyfill'
-  : 'react-dom/client';
+const awaitValue = <T>(awaiter: () => T): Promise<T> => new Promise((resolve) => {
+    const result = awaiter();
+    if (result) {
+      resolve(result);
+    } else {
+      setTimeout(() => resolve(awaitValue(awaiter)), 100);
+    }
+  });
 
 class ReactHTMLElement extends HTMLElement {
   private _initialized?: boolean;
 
   private _mountPoint?: Element;
 
-  private _root?: Root;
+  private _root?: ReactHTMLElementDOMRoot;
+
+  private _awaitingRoot = false;
 
   private getShadowRoot(): ShadowRoot {
     return this.shadowRoot || this.attachShadow({ mode: 'open' });
@@ -49,26 +53,20 @@ class ReactHTMLElement extends HTMLElement {
     this._mountPoint = mount;
   }
 
-  async root(): Promise<Root> {
+  async root(): Promise<ReactHTMLElementDOMRoot> {
+    if (this._awaitingRoot) {
+      await awaitValue(() => this._root);
+    }
     if (this._root) return this._root;
 
-    const { createRoot } = (await import(
-      /* webpackExports: ['createRoot'] */
-      `${REACT_DOM_CLIENT_IMPORT}`
-    )) as {
-      createRoot: typeof createRootOriginal;
-    };
-    this._root = createRoot(this.mountPoint);
+    this._awaitingRoot = true;
+    this._root = (await getCreateRoot())(this.mountPoint);
+    this._awaitingRoot = false;
     return this._root;
   }
 
   render(app: Renderable): void {
     if (!this.isConnected) return;
-
-    if (isPreEighteen) {
-      ReactDOM.render(app, this.mountPoint);
-      return;
-    }
 
     void this.renderRoot(app);
   }
@@ -80,11 +78,6 @@ class ReactHTMLElement extends HTMLElement {
 
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
-
-    if (isPreEighteen) {
-      ReactDOM.unmountComponentAtNode(this._mountPoint);
-      return;
-    }
 
     this._root?.unmount();
   }
