@@ -1,6 +1,6 @@
 import type ReactDOM from 'react-dom';
 import type { Root } from 'react-dom/client';
-import { createRoot } from './react-dom-client';
+import { getCreateRoot } from './react-dom-client';
 
 type Renderable = Parameters<ReactDOM.Renderer>[0][number];
 type ReactHTMLElementDOMRoot = Pick<Root, 'render' | 'unmount'>;
@@ -42,10 +42,10 @@ class ReactHTMLElement extends HTMLElement {
     this._mountPoint = mount;
   }
 
-  root(): ReactHTMLElementDOMRoot {
+  async root(): Promise<ReactHTMLElementDOMRoot> {
     if (this._root) return this._root;
 
-    this._root = createRoot(this.mountPoint);
+    this._root = (await getCreateRoot())(this.mountPoint);
     return this._root;
   }
 
@@ -55,8 +55,8 @@ class ReactHTMLElement extends HTMLElement {
     void this.renderRoot(app);
   }
 
-  renderRoot(app: Renderable): void {
-    const root = this.root();
+  async renderRoot(app: Renderable): Promise<void> {
+    const root = await this.root();
     root.render(app);
   }
 

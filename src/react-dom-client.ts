@@ -5,14 +5,6 @@ type ReactDOM18 = ReactDOMOriginal & {
   createRoot?: CreateRoot;
 };
 
-let MaybeReactDOM18: ReactDOM18;
-try {
-  // eslint-disable-next-line global-require,@typescript-eslint/no-var-requires
-  MaybeReactDOM18 = require('react-dom/client') as ReactDOM18;
-} catch {
-  MaybeReactDOM18 = ReactDOM as ReactDOM18;
-}
-
 type CreateRoot = typeof createRootOriginal;
 type CreateRootParams = Parameters<CreateRoot>;
 type ReactDOMOriginal = typeof ReactDOM;
@@ -30,5 +22,19 @@ const createRootFake = (container: CreateRootParams[0]) => {
   return newRoot;
 };
 
+let checkedFor18 = false;
+let MaybeReactDOM18: ReactDOM18;
 // eslint-disable-next-line import/prefer-default-export
-export const { createRoot = createRootFake } = MaybeReactDOM18;
+export const getCreateRoot = async () => {
+  if (!checkedFor18) {
+    try {
+      // eslint-disable-next-line global-require,@typescript-eslint/no-var-requires
+      MaybeReactDOM18 = (await require('react-dom/client')) as ReactDOM18;
+    } catch {
+      MaybeReactDOM18 = ReactDOM as ReactDOM18;
+    }
+    checkedFor18 = true;
+  }
+  const { createRoot = createRootFake } = MaybeReactDOM18;
+  return createRoot;
+};
