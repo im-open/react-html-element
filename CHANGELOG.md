@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/WTW-IM/react-html-element/compare/v4.0.2...v4.0.3) (2023-01-27)
+
+
+### Fix
+
+* ensuring we always render the latest app state ([f8e3f0f](https://github.com/WTW-IM/react-html-element/commit/f8e3f0f29ea8a13c8daa9b3fd49cc97858704a17))
+
 ## [4.0.2](https://github.com/WTW-IM/react-html-element/compare/v4.0.1...v4.0.2) (2023-01-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "react-html-element",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "An HTMLElement extension that provides a simple setup for Web Components using React.",
   "main": "module/index.js",
   "types": "types/index.d.ts",
