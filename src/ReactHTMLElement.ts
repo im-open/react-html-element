@@ -23,6 +23,8 @@ class ReactHTMLElement extends HTMLElement {
 
   private _awaitingRoot = false;
 
+  private _app: Renderable | undefined;
+
   private getShadowRoot(): ShadowRoot {
     return this.shadowRoot || this.attachShadow({ mode: 'open' });
   }
@@ -72,8 +74,9 @@ class ReactHTMLElement extends HTMLElement {
   }
 
   async renderRoot(app: Renderable): Promise<void> {
+    this._app = app; // this value may change while we wait for root...
     const root = await this.root();
-    root.render(app);
+    root.render(this._app); // always render current app
   }
 
   disconnectedCallback(): void {
