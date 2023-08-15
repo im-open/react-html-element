@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/WTW-IM/react-html-element/compare/v4.0.3...v4.0.4) (2023-08-15)
+
+
+### Fix
+
+* avoiding synchronous unmount ([bc03fd0](https://github.com/WTW-IM/react-html-element/commit/bc03fd0d1ff902590eaea915048f29e26a038e02))
+
 ## [4.0.3](https://github.com/WTW-IM/react-html-element/compare/v4.0.2...v4.0.3) (2023-01-27)
 
 
