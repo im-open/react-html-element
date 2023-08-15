@@ -82,7 +82,8 @@ class ReactHTMLElement extends HTMLElement {
   disconnectedCallback(): void {
     if (!this._mountPoint) return;
 
-    this._root?.unmount();
+    // setTimeout to avoid synchronous unmount
+    setTimeout(() => this._root?.unmount(), 0);
   }
 
   constructor(template = '<div></div>', mountSelector = 'div') {
