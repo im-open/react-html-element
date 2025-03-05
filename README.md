@@ -1,12 +1,12 @@
 # react-html-element
 
-[![Build Status](https://travis-ci.com/WTW-IM/react-html-element.svg?branch=master)](https://travis-ci.com/github/WTW-IM/react-html-element)
+[![Build Status](https://travis-ci.com/im-open/react-html-element.svg?branch=master)](https://travis-ci.com/github/im-open/react-html-element)
 [![npm version](https://badge.fury.io/js/react-html-element.svg)](https://badge.fury.io/js/react-html-element)
 
 ## NOTE:
 
 This package works with React at version 17. For version 16, [see the react-16
-branch of this repo](https://github.com/WTW-IM/react-html-element/tree/react-16).
+branch of this repo](https://github.com/im-open/react-html-element/tree/react-16).
 
 ## What is it?
 
