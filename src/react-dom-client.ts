@@ -10,6 +10,7 @@ type CreateRootParams = Parameters<CreateRoot>;
 type ReactDOMOriginal = typeof ReactDOM;
 type RendererProps = Parameters<typeof ReactDOM['render']>;
 
+/* eslint-disable react/no-deprecated */
 const createRootFake = (container: CreateRootParams[0]) => {
   const newRoot = {
     render: (element: RendererProps[0]) => {
@@ -21,6 +22,7 @@ const createRootFake = (container: CreateRootParams[0]) => {
   };
   return newRoot;
 };
+/* eslint-enable react/no-deprecated */
 
 let checkedFor18 = false;
 let MaybeReactDOM18: ReactDOM18;

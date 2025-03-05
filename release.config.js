@@ -42,7 +42,7 @@ const extraPlugins = isMainBranch
   : [];
 
 module.exports = {
-  repositoryUrl: 'git@github.com:WTW-IM/react-html-element.git',
+  repositoryUrl: 'git@github.com:im-open/react-html-element.git',
   branches: [
     { name: 'main' },
     { name: 'react-17', channel: 'react-17', prerelease: 'react-17' },
