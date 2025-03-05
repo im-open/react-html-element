@@ -1,3 +1,14 @@
+## [4.0.5](https://github.com/im-open/react-html-element/compare/v4.0.4...v4.0.5) (2025-03-05)
+
+
+### Build
+
+* ensuring CI Release works ([167121b](https://github.com/im-open/react-html-element/commit/167121b6871eb957d8eceac6f3259c42756c6a40))
+
+### Fix
+
+* ensuring types are loaded in newer typescript versions ([3c0201e](https://github.com/im-open/react-html-element/commit/3c0201e3c309fc56edd3287b279f033965781a7f))
+
 ## [4.0.4](https://github.com/im-open/react-html-element/compare/v4.0.3...v4.0.4) (2023-08-15)
 
 ### Fix
