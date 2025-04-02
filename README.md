@@ -1,6 +1,5 @@
 # react-html-element
 
-[![Build Status](https://travis-ci.com/im-open/react-html-element.svg?branch=master)](https://travis-ci.com/github/im-open/react-html-element)
 [![npm version](https://badge.fury.io/js/react-html-element.svg)](https://badge.fury.io/js/react-html-element)
 
 ## NOTE:
@@ -57,7 +56,7 @@ class IncrementerComponent extends ReactHTMLElement {
   }
 }
 
-customElements.define('incrementer', ReactTestComponent);
+customElements.define('incrementer-component', IncrementerComponent);
 ```
 
 The key pieces of code are `... extends ReactHTMLElement` and `this.render`,
