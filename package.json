@@ -36,6 +36,9 @@
     "url": "https://github.com/im-open/react-html-element/issues"
   },
   "homepage": "https://github.com/im-open/react-html-element#readme",
+  "engines": {
+    "node": ">=24"
+  },
   "lint-staged": {
     "src/**/*.(j|t)s?(x)": [
       "prettier --write",
